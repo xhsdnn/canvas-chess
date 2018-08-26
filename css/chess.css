@@ -1,0 +1,80 @@
+#chess {
+    background-image: url('../assets/background.png');
+    background-size: 100% 100%;
+
+    /* background: #c98f3e; */
+
+    border-radius: 20px;
+}
+
+.panel {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* 提示面板相关 */
+.tip-info {
+    border: 2px solid #0086ff;
+    width: 200px;
+    margin-left: 5px;
+    border-radius: 10px;
+}
+.move-info p {
+    text-align: center;
+    font-size: 28px;
+}
+.red {
+    color: red;
+}
+.black {
+    color: black;
+}
+
+.start,
+.over {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%);
+}
+
+/* “开始”和“再来一局”基本样式 */
+
+.basic-btn {
+    font-size: 24px;
+    width: 150px;
+    height: 50px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    background-color: #fff;
+    box-shadow: 0px 1px 20px 3px #fff;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.over h1,
+.over button {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+}
+.over h1 {
+    color: red;
+}
+
+.over button, .start button {
+    margin-top: 50px;
+    outline: none;
+}
+
+.start button:hover,
+.over button:hover {
+    transform: scale(1.2) translateY(-50%);
+}
+
+.disappear {
+    display: none;
+}

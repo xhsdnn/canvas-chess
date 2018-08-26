@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas-chess</title>
+    <link rel="stylesheet" href="css/chess.css">
+</head>
+
+<body>
+    <div class="panel">
+        <canvas id="chess"></canvas>
+
+        <!-- 提示面板 -->
+        <div class="tip-info">
+            <div class="move-info">
+                <h2>当前移动：</h2>
+                <p class="move-group">无</p>
+            </div>
+        </div>
+
+        <div class="start">
+            <button class="basic-btn">
+                开始
+            </button>
+        </div>
+
+        <div class="over disappear">
+            <h1>GAME OVER</h1>
+            <button class="basic-btn">再来一局</button>
+        </div>
+    </div>
+
+    <script src="js/chess.js"></script>
+    <script>
+        let chessDom = document.getElementById('chess');
+        let chess = new Chess(chessDom);
+        chess.overCallback = over; // 结束回调
+        chess.moveCallback = move;  // 移动成功回调
+
+        let startDom = document.getElementsByClassName('start')[0];
+        let overDom = document.getElementsByClassName('over')[0];
+        let moveGroupDom = document.getElementsByClassName('move-group')[0];
+
+        startDom && startDom.addEventListener('click', () => {
+            startDom.classList.add('disappear');
+
+            chess.start();
+            move();
+        });
+
+        overDom && overDom.addEventListener('click', () => {
+            overDom.classList.add('disappear');
+            chess.start();
+            move();
+        });
+
+        function over() {
+            overDom.classList.remove('disappear');
+        }
+
+        function move() {
+            let isRed = chess.currentGroup == 'r';
+            moveGroupDom.classList.remove(isRed ? 'black' : 'red');
+            moveGroupDom.classList.add(isRed ? 'red' : 'black');
+            moveGroupDom.innerHTML = isRed ? "红方" : "黑方";
+        }
+    </script>
+</body>
+
+</html>
